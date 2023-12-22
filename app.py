@@ -15,7 +15,7 @@ def home():
                 <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
                 <style>
                     #map {
-                        height: 70vh; /* Adjust the percentage as needed */
+                        height: 100vh; /* Adjust the percentage as needed */
                         width: 100%;
                         max-width: 3000px;
                         margin: 0 auto;
