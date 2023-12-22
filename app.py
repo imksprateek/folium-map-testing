@@ -6,17 +6,19 @@ app = Flask(__name__)
 
 @app.route("/")
 def home():
+    lat = 13.1155
+    lon = 77.6070
     """Create a map object"""
-    mapObj = folium.Map(location=[18.906286495910905, 79.40917968750001],
-                        zoom_start=7)
+    mapObj = folium.Map(location=[lat, lon],
+                        zoom_start=15)
 
     # add a marker to the map object
-    folium.Marker([17.4127332, 78.078362],
+    folium.Marker([lat, lon],
                   popup="<i>This a marker</i>").add_to(mapObj)
 
     # set iframe width and height
-    mapObj.get_root().width = "700px"
-    mapObj.get_root().height = "500px"
+    mapObj.get_root().width = "2000px"
+    mapObj.get_root().height = "1000px"
 
     # derive the iframe content to be rendered in the HTML body
     iframe = mapObj.get_root()._repr_html_()
