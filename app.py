@@ -32,6 +32,8 @@ def home():
                 <style>
                 body{
                     object-fit: fill;
+                    margin:0;
+                    padding:0;
                 }
                 </style>
                 </head>
