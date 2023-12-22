@@ -18,7 +18,7 @@ def home():
 
     # set iframe width and height
     mapObj.get_root().width = "100%"
-    mapObj.get_root().height = "1500px"
+    mapObj.get_root().height = "2000px"
 
     # derive the iframe content to be rendered in the HTML body
     iframe = mapObj.get_root()._repr_html_()
