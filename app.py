@@ -17,7 +17,7 @@ def home():
                     #map {
                         height: 70vh;
                         width: 100%;
-                        max-width: 800px;
+                     max-width: 3000px;
                         margin: 0 auto;
                     }
 
