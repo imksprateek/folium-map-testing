@@ -1,50 +1,54 @@
 from flask import Flask, render_template_string
-import folium
 
 # create a flask application
 app = Flask(__name__)
 
 @app.route("/")
 def home():
-    lat = 13.1155
-    lon = 77.6070
-    """Create a map object"""
-    mapObj = folium.Map(location=[lat, lon],
-                        zoom_start=18)
-
-    # add a marker to the map object
-    folium.Marker([lat, lon],
-                  popup="<i>This a marker</i>").add_to(mapObj)
-
-    # set iframe width and height
-    mapObj.get_root().width = "100%"
-    mapObj.get_root().height = "2300px"
-
-    # derive the iframe content to be rendered in the HTML body
-    iframe = mapObj.get_root()._repr_html_()
-
-    # return a web page with folium map components embeded in it. You can also use render_template.
+    """Create a map object using Leaflet"""
     return render_template_string(
         """
-            <!DOCTYPE html>
-            <html>
-                <head>
+        <!DOCTYPE html>
+        <html>
+            <head>
+                <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
                 <style>
-                body{
-                    object-fit: fill;
-                    margin:0;
-                    padding:0;
-                }
+                    #map {
+                        height: 70vh;
+                        width: 100%;
+                        max-width: 800px;
+                        margin: 0 auto;
+                    }
+
+                    .leaflet-tooltip-pane, .leaflet-popup-pane {
+                        font-size: 16px !important;
+                    }
+
+                    .leaflet-marker-icon {
+                        width: 30px !important;
+                        height: 30px !important;
+                    }
                 </style>
-                </head>
-                <body>
-                    <!--<h1>Using iframe to render folium map in HTML page</h1>-->
-                    {{ iframe|safe }}
-                    <!--<h3>This map is place in an iframe of the page!</h3>-->
-                </body>
-            </html>
-        """,
-        iframe=iframe,
+            </head>
+            <body>
+                <h1>Using Leaflet to render a responsive map in HTML page</h1>
+                <div id="map"></div>
+
+                <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+                <script>
+                    var map = L.map('map').setView([13.1155, 77.6070], 12);
+
+                    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                        attribution: '© OpenStreetMap contributors'
+                    }).addTo(map);
+
+                    var marker = L.marker([13.1155, 77.6070]).addTo(map);
+                    // No popup binding for the marker
+                </script>
+            </body>
+        </html>
+        """
     )
 
 if __name__ == "__main__":
