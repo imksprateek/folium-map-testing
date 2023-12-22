@@ -32,7 +32,6 @@ def home():
                 </style>
             </head>
             <body>
-                <h1>Using Leaflet to render a responsive map in HTML page</h1>
                 <div id="map"></div>
 
                 <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
