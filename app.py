@@ -10,7 +10,7 @@ def home():
     lon = 77.6070
     """Create a map object"""
     mapObj = folium.Map(location=[lat, lon],
-                        zoom_start=14)
+                        zoom_start=18)
 
     # add a marker to the map object
     folium.Marker([lat, lon],
